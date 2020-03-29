@@ -3,6 +3,7 @@
 //
 using namespace std;
 #include "polinominal.h"
+#include "Field_Z.h"
 
 void return_in_pos(fstream *file, bool pos){
     file->clear();
@@ -63,6 +64,16 @@ void generateSet(std::vector<size_t> &vec, size_t except, size_t n) {
         ++i;
     }
 
+}
+
+void calculation(std::vector<Field_Z> &polynomial, size_t base, long deg, long p) {
+    Field_Z rez(base, 0);
+    Field_Z point(base, p);
+    // Created by krage56 on 28.03.2020.
+    for(int i = 0; i < polynomial.size(); ++i){
+        rez += polynomial[i] * binpow(point, deg - i);
+    }
+    cout << rez << endl;
 }
 
 

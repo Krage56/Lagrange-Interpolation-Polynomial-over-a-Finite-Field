@@ -20,7 +20,7 @@ int main(){
         return 1;
     }
 
-    vector <Field_Z> set(1)/*это костыль*/, coefficients, tmp_coefficients;
+    vector <Field_Z> coefficients, tmp_coefficients;
 
     //инициализация
     Field_Z tmp_obj(p, 0);
@@ -67,10 +67,7 @@ int main(){
         //tmp_obj = 1;
         denominator = 1;
     }
-    cout << N << " " << p << " " << a << endl;
-    for(int i = 0; i < N; ++i){
-        cout << coefficients[i] << endl;
-    }
+    calculation(coefficients, p, N - 1, a);
     file.close();
     return 0;
 }

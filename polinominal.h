@@ -15,12 +15,13 @@
 #include <cstdio>
 #include <typeinfo>
 #include "Field_Z.h"
-
+// Created by krage56 on 28.03.2020.
 const size_t mem_block = 40 + 1;
 void return_in_pos(std::fstream *file, bool pos);
 bool is_empty_file(std::fstream *file);
 bool processing(std::fstream*, size_t &, size_t &, long &, std::vector<std::vector<Field_Z>> &);
 void generateSet(std::vector<size_t> &, size_t, size_t);
+void calculation(std::vector<Field_Z>&, size_t, long, long);
 
 
 
