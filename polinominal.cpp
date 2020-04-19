@@ -51,29 +51,23 @@ bool processing(fstream *file, size_t &N, size_t &p, long &a, vector<vector<Fiel
     return true;
 }
 
-void generateSet(std::vector<size_t> &vec, size_t except, size_t n) {
-    size_t i = 0;
-    vec.clear();
-    while(i != except){
-        vec.push_back(i);
-        ++i;
+void calculation(std::vector<vector<Field_Z>> &data, size_t base, long point_x) {
+    Field_Z lagrange_pol(base, 0);
+    Field_Z basics_pol(base, 0);
+    Field_Z x(base, point_x);
+    for (size_t i = 0; i < data.size(); i++){
+        basics_pol = 1;
+        for (size_t j = 0; j < data.size(); j++){
+            if (j == i) continue;
+            basics_pol *= (x - data[j][0])/(data[i][0] - data[j][0]);
+        }
+        lagrange_pol += basics_pol*data[i][1];
     }
-    ++i;
-    while(i < n){
-        vec.push_back(i);
-        ++i;
-    }
-
-}
-
-void calculation(std::vector<Field_Z> &polynomial, size_t base, long deg, long p) {
-    Field_Z rez(base, 0);
-    Field_Z point(base, p);
-    // Created by krage56 on 28.03.2020.
-    for(int i = 0; i < polynomial.size(); ++i){
-        rez += polynomial[i] * binpow(point, deg - i);
-    }
-    cout << rez << endl;
+    lagrange_pol.normalize();
+    ofstream answer;
+    answer.open("./answer.txt");
+    answer << lagrange_pol << "\n";
+    answer.close();
 }
 
 
