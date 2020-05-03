@@ -51,7 +51,7 @@ bool processing(fstream *file, size_t &N, size_t &p, long &a, vector<vector<Fiel
     return true;
 }
 
-void calculation(std::vector<vector<Field_Z>> &data, size_t base, long point_x) {
+Field_Z calculation(std::vector<vector<Field_Z>> &data, size_t base, long point_x) {
     Field_Z lagrange_pol(base, 0);
     Field_Z basics_pol(base, 0);
     Field_Z x(base, point_x);
@@ -64,10 +64,11 @@ void calculation(std::vector<vector<Field_Z>> &data, size_t base, long point_x) 
         lagrange_pol += basics_pol*data[i][1];
     }
     lagrange_pol.normalize();
-    ofstream answer;
+    /*ofstream answer;
     answer.open("./answer.txt");
     answer << lagrange_pol << "\n";
-    answer.close();
+    answer.close();*/
+	return lagrange_pol;
 }
 
 
